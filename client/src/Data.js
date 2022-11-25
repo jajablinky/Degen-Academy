@@ -24,7 +24,9 @@ export default class Data {
 
         // Check if auth is required
     if (requiresAuth) {
-      const encodedCredentials = Buffer.from(`${credentials.username}:${credentials.password}`);
+      const encodedCredentials = Buffer.from(
+        `${credentials.username}:${credentials.password}`
+      ).toString("base64");
 
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
      }
