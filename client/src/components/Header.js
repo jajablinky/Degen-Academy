@@ -1,14 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({context}) => {
+
   return (
     <div className="header">
       <div className="bounds">
         <h1 className="header--logo">Courses</h1>
         <nav>
           <React.Fragment>
-            <span>Welcome!</span>
+            {/* <span>Welcome! {user.firstName}</span> */}
             <NavLink to="/signout">Sign Out</NavLink>
           </React.Fragment>
           <React.Fragment>
