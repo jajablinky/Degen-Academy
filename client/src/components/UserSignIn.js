@@ -1,15 +1,24 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserSignIn = ({ context }) => {
+    let navigate = useNavigate();
+
     const emailAddress = useRef("");
     const password = useRef("");
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      await context.actions
+        .signIn(emailAddress.current.value, password.current.value)
+        .then(navigate("/"));
+    };
 
   return (
     <div className="form--centered">
       <h1>Sign In</h1>
       <br></br>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="emailAddress">Email Address</label>
         <input
           id="emailAddress"

@@ -1,13 +1,29 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateCourse = ({ context }) => {
+  let navigate = useNavigate();
+  
   const title = useRef('')
   const description = useRef('')
   const estimatedTime = useRef('')
   const materialsNeeded = useRef('')
 
-
+  const handleSubmit =  (e) => {
+    e.preventDefault()
+    const course = {
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded
+    }
+     context.data
+      .createCourse(course)
+      .catch((err) => {
+        console.log(err);
+        navigate('/')
+      });
+  }
 
   return (
     <div className="wrap">
@@ -19,7 +35,7 @@ const CreateCourse = ({ context }) => {
           <li>Please provide a Value for "Description"</li>
         </ul>
       </div> */}
-      <form onSubmit="">
+      <form onSubmit={handleSubmit}>
         <div className="main--flex">
           <div>
             <label htmlFor="courseTitle">Course Title</label>

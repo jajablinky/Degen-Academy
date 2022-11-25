@@ -42,7 +42,7 @@ const UpdateCourse = ({ context }) => {
 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const course = {
       title,
@@ -52,7 +52,7 @@ const UpdateCourse = ({ context }) => {
       id
       // userId: context.authenticatedUser.id, //used to be id
     };
-    context.data
+    await context.data
       .updateCourse(
         id,
         course,

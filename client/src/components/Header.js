@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = ({context}) => {
 
@@ -8,18 +8,18 @@ const Header = ({context}) => {
       <div className="bounds">
         <h1 className="header--logo">Courses</h1>
         <nav>
-          <React.Fragment>
+          <>
             {/* <span>Welcome! {user.firstName}</span> */}
-            <NavLink to="/signout">Sign Out</NavLink>
-          </React.Fragment>
-          <React.Fragment>
-            <NavLink className="signup" to="/signup">
+            <Link to="/">Sign Out</Link>
+          </>
+          <>
+            <Link className="signup" to="/signup">
               Sign Up
-            </NavLink>
-            <NavLink className="signin" to="/signin">
+            </Link>
+            <Link className="signin" to="/signin">
               Sign In
-            </NavLink>
-          </React.Fragment>
+            </Link>
+          </>
         </nav>
       </div>
     </div>
