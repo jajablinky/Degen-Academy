@@ -15,23 +15,25 @@ import withContext from "./Context";
 
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
+const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
+const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignInWithContext = withContext(UserSignIn);
+
 
 const App = () => (
-  <React.Fragment>
+  <>
     <Header />
 
     <Routes>
       <Route exact path="/" element={<CoursesWithContext />} />
       <Route path="/courses/:id" element={<CourseDetailWithContext />} />
-      <Route path="/createcourse" element={<CreateCourse />} />
+      <Route path="/createcourse" element={<CreateCourseWithContext />} />
       <Route path="/courses/:id/update" element={<UpdateCourseWithContext />} />
-      <Route path="/signin" element={<UserSignIn />} />
-      <Route path="/signup" element={<UserSignUp />} />
-      {/* <Route path="/signout" element={<UserSignOut />} /> */}
-      {/* This one is empty */}
+      <Route path="/signin" element={<UserSignInWithContext />} />
+      <Route path="/signup" element={<UserSignUpWithContext />} />
     </Routes>
-  </React.Fragment>
+  </>
 );
 
 export default App;

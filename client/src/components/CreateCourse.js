@@ -1,52 +1,69 @@
-import React from "react";
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
-const CreateCourse = () => {
+const CreateCourse = ({ context }) => {
+  const title = useRef('')
+  const description = useRef('')
+  const estimatedTime = useRef('')
+  const materialsNeeded = useRef('')
+
+
+
   return (
     <div className="wrap">
-      <h2>Create Course</h2>
-      <div className="validation--errors">
+      <h1>Create Course</h1>
+      {/* <div className="validation--errors">
         <h3>Validation Errors</h3>
         <ul>
-          <li>Please provide a value for "Title"</li>
-          <li>Please provide a value for "Description"</li>
+          <li>Please provide a Value for "Title"</li>
+          <li>Please provide a Value for "Description"</li>
         </ul>
-      </div>
-      <form>
+      </div> */}
+      <form onSubmit="">
         <div className="main--flex">
           <div>
-            <label for="courseTitle">Course Title</label>
-            <input id="courseTitle" name="courseTitle" type="text" value="" />
+            <label htmlFor="courseTitle">Course Title</label>
+            <input
+              id="courseTitle"
+              name="courseTitle"
+              type="text"
+              defaultValue=""
+              ref={title}
+            />
 
             <p>By Joe Smith</p>
 
-            <label for="courseDescription">Course Description</label>
+            <label htmlFor="courseDescription">Course Description</label>
             <textarea
               id="courseDescription"
               name="courseDescription"
+              ref={description}
             ></textarea>
           </div>
           <div>
-            <label for="estimatedTime">Estimated Time</label>
+            <label htmlFor="estimatedTime">Estimated Time</label>
             <input
               id="estimatedTime"
               name="estimatedTime"
               type="text"
-              value=""
+              defaultValue=""
+              ref={estimatedTime}
             />
 
-            <label for="materialsNeeded">Materials Needed</label>
-            <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
+            <label htmlFor="materialsNeeded">Materials Needed</label>
+            <textarea
+              id="materialsNeeded"
+              name="materialsNeeded"
+              ref={materialsNeeded}
+            ></textarea>
           </div>
         </div>
         <button className="button" type="submit">
           Create Course
         </button>
-        <button
-          className="button button-secondary"
-          onclick="event.preventDefault(); location.href='index.html';"
-        >
-          Cancel
-        </button>
+        <Link to="/">
+          <button className="button button-secondary">Cancel</button>
+        </Link>
       </form>
     </div>
   );

@@ -49,6 +49,7 @@ const UpdateCourse = ({ context }) => {
       description,
       estimatedTime,
       materialsNeeded,
+      id
       // userId: context.authenticatedUser.id, //used to be id
     };
     context.data
@@ -96,7 +97,7 @@ const UpdateCourse = ({ context }) => {
               <textarea
                 id="courseDescription"
                 name="courseDescription"
-                defaultValue={description ? description : "Update with new description"}
+                defaultValue={description}
                 onChange={handleChange}
               ></textarea>
             </div>
@@ -107,7 +108,7 @@ const UpdateCourse = ({ context }) => {
                 name="estimatedTime"
                 type="text"
                 placeholder={estimatedTime}
-                value={estimatedTime ? estimatedTime : "Update with new time"}
+                value={estimatedTime}
                 onChange={handleChange}
               />
 

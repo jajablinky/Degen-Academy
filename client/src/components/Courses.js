@@ -15,24 +15,11 @@ const Courses = ({ context }) => {
   return (
     <>
       <div className="wrap main--grid">
-        {courses?.map((course) => {
-          return (
-            <NavLink
-              className="course--module course--link"
-              to={`/courses/${course.id}`}
-              key={course.id}
-            >
-              <h2 className="course--label">Course</h2>
-              <h3 className="course--title">{course.title}</h3>
-            </NavLink>
-          );
-        })}
         <NavLink
           className="course--module course--add--module"
           to="/createcourse"
         >
-          {" "}
-          <span class="course--add--title">
+          <span className="course--add--title">
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +33,18 @@ const Courses = ({ context }) => {
             New Course
           </span>
         </NavLink>
+        {courses?.map((course) => {
+          return (
+            <NavLink
+              className="course--module course--link"
+              to={`/courses/${course.id}`}
+              key={course.id}
+            >
+              <h2 className="course--label">Course</h2>
+              <h3 className="course--title">{course.title}</h3>
+            </NavLink>
+          );
+        })}
       </div>
     </>
   );
