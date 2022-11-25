@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 const UserSignIn = ({ context }) => {
     let navigate = useNavigate();
 
-    const emailAddress = useRef("");
-    const password = useRef("");
+    const emailAddress = useRef(null);
+    const password = useRef(null);
 
     const handleSubmit = async (e) => {
       e.preventDefault();

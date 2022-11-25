@@ -47,7 +47,7 @@ const CreateCourse = ({ context }) => {
               ref={title}
             />
 
-            <p>By Joe Smith</p>
+            <p>By {}</p>
 
             <label htmlFor="courseDescription">Course Description</label>
             <textarea

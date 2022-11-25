@@ -1,4 +1,5 @@
 import apiBaseUrl from "./config";
+import {Buffer} from "buffer";
 
 export default class Data {
   api(
@@ -21,12 +22,12 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-    //     // Check if auth is required
-    // if (requiresAuth) {
-    //   const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+        // Check if auth is required
+    if (requiresAuth) {
+      const encodedCredentials = Buffer.from(`${credentials.username}:${credentials.password}`);
 
-    //   options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-    //  }
+      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+     }
 
     return fetch(url, options);
   }

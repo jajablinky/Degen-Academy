@@ -49,15 +49,16 @@ const UpdateCourse = ({ context }) => {
       description,
       estimatedTime,
       materialsNeeded,
-      id
       // userId: context.authenticatedUser.id, //used to be id
     };
+
+
     await context.data
       .updateCourse(
         id,
         course,
-        // context.authenticatedUser.email,
-        // context.authenticatedUser.password
+        // context.authenticateUdUser.email,
+        // context.authenticatedser.password
       )
     //   .then((errors) => {
     //     if (errors.length) {
@@ -91,7 +92,7 @@ const UpdateCourse = ({ context }) => {
                 onChange={handleChange}
               />
 
-              {/* <p>By {course.User.firstName}, {course.User.lastName}</p> */}
+              <p>By {course.firstName}, {course.lastName}</p>
 
               <label htmlFor="courseDescription">Course Description</label>
               <textarea
@@ -122,7 +123,7 @@ const UpdateCourse = ({ context }) => {
             </div>
           </div>
           <Link to="/">
-          <button className="button" type="submit">
+          <button className="button" type="submit" onClick={handleSubmit}>
             Update Course
           </button>
           </Link>
