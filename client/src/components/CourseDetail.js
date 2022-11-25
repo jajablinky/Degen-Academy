@@ -3,13 +3,17 @@ import { useParams, Link, NavLink } from "react-router-dom";
 
 const CourseDetail = ({ context }) => {
   const [course, setCourse] = useState([]);
+  const [name, setName] = useState(null);
 
   const { id } = useParams();
 
   useEffect(() => {
     context.data
       .getCourse(id)
-      .then((data) => setCourse(data))
+      .then((data) => {
+        setCourse(data);
+        setName(`${course.User.firstName}, ${course.User.lastName}`);
+    })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -33,14 +37,13 @@ const CourseDetail = ({ context }) => {
           </Link>
         </div>
       </div>
-      {/* <div className="wrap">
-        <h2>Course Detail</h2>
+      
+      <div className="wrap">
         <form>
           <div className="main--flex">
             <div>
-              <h3 className="course--detail--title">Course</h3>
-              <h4 className="course--name">{course.title}</h4>
-              <p>By {course.user.firstName}</p>
+              <h1 className="course--name">{course.title}</h1>
+              <p>By {name ? name : "Unknown"}</p>
 
               <p>{course.description}</p>
             </div>
@@ -55,7 +58,7 @@ const CourseDetail = ({ context }) => {
             </div>
           </div>
         </form>
-      </div> */}
+      </div>
     </>
   );
 };

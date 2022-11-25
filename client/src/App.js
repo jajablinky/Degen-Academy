@@ -14,6 +14,8 @@ import UserSignOut from "./components/UserSignOut";
 import withContext from "./Context";
 
 const CoursesWithContext = withContext(Courses);
+const CourseDetailWithContext = withContext(CourseDetail);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 
 const App = () => (
   <React.Fragment>
@@ -21,9 +23,9 @@ const App = () => (
 
     <Routes>
       <Route exact path="/" element={<CoursesWithContext />} />
-      <Route path="/courses/:id" element={<CourseDetail />} />
+      <Route path="/courses/:id" element={<CourseDetailWithContext />} />
       <Route path="/createcourse" element={<CreateCourse />} />
-      <Route path="/courses/:id/update" element={<UpdateCourse />} />
+      <Route path="/courses/:id/update" element={<UpdateCourseWithContext />} />
       <Route path="/signin" element={<UserSignIn />} />
       <Route path="/signup" element={<UserSignUp />} />
       {/* <Route path="/signout" element={<UserSignOut />} /> */}

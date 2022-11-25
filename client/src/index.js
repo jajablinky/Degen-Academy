@@ -7,6 +7,7 @@ import { Provider } from "./Context";
 import "./styles/global.css";
 import "./styles/new.css";
 
+
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
