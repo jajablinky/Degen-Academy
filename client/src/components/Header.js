@@ -1,17 +1,28 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
-    return(
-        <div className="wrap header--flex">
-                <h1 className="header--logo"><a href="index.html">Courses</a></h1>
-                <nav>
-                    <ul className="header--signedout">
-                        <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/signin">Sign In</a></li>
-                    </ul>
-                </nav>
-        </div>
-    )
-}
+  return (
+    <div className="header">
+      <div className="bounds">
+        <h1 className="header--logo">Courses</h1>
+        <nav>
+          <React.Fragment>
+            <span>Welcome!</span>
+            <NavLink to="/signout">Sign Out</NavLink>
+          </React.Fragment>
+          <React.Fragment>
+            <NavLink className="signup" to="/signup">
+              Sign Up
+            </NavLink>
+            <NavLink className="signin" to="/signin">
+              Sign In
+            </NavLink>
+          </React.Fragment>
+        </nav>
+      </div>
+    </div>
+  );
+};
 
 export default Header;

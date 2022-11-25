@@ -11,21 +11,25 @@ import UserSignIn from "./components/UserSignIn";
 import UserSignUp from "./components/UserSignUp";
 import UserSignOut from "./components/UserSignOut";
 
-const App = () => (
-    <React.Fragment>
-      <Header />
+import withContext from "./Context";
 
-      <Routes>
-        <Route exact path="/" element={Courses} />
-        <Route path="/course" element={CourseDetail} />
-        <Route path="/createcourse" element={CreateCourse} />
-        <Route path="/updatecourse" element={UpdateCourse} />
-        <Route path="/signin" element={UserSignIn} />
-        <Route path="/signup" element={UserSignUp} />
-        <Route path="/signout" element={UserSignOut} />
-        {/* This one is empty */}
-      </Routes>
-    </React.Fragment>
+const CoursesWithContext = withContext(Courses);
+
+const App = () => (
+  <React.Fragment>
+    <Header />
+
+    <Routes>
+      <Route exact path="/" element={<CoursesWithContext />} />
+      <Route path="/courses/:id" element={<CourseDetail />} />
+      <Route path="/createcourse" element={<CreateCourse />} />
+      <Route path="/course/:id/update" element={<UpdateCourse />} />
+      <Route path="/signin" element={<UserSignIn />} />
+      <Route path="/signup" element={<UserSignUp />} />
+      {/* <Route path="/signout" element={<UserSignOut />} /> */}
+      {/* This one is empty */}
+    </Routes>
+  </React.Fragment>
 );
 
 export default App;

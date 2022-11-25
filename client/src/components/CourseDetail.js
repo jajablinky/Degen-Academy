@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react"
+import {useParams, Link, NavLink} from "react-router-dom";
 
-const CourseDetail = () => {
+
+const CourseDetail = ({ context }) => {
+    const [course, setCourse] = useState([]);
+
+    const { id } = useParams();
+
+    useEffect(() => {
+        context.data
+          .getCourses()
+          .then((data) => setCourse(data))
+          .catch((err) => console.log(err));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+
     return(
         <><div className="actions--bar">
             <div className="wrap">
-                <a className="button" href="update-course.html">Update Course</a>
-                <a className="button" href="#">Delete Course</a>
-                <a className="button button-secondary" href="index.html">Return to List</a>
+                <Link className="button" to="update">Update Course</Link>
+                <NavLink className="button" to="/" key={id}>Delete Course</NavLink>
+                <Link className="button button-secondary" to="/">Return to List</Link>
             </div>
-        </div><div className="wrap">
+        </div>
+        {/* <div className="wrap">
                 <h2>Course Detail</h2>
                 <form>
                     <div className="main--flex">
                         <div>
-                            <h3 className="course--detail--title">Course</h3>
+                            <h3 className="course--detail--title">{course.title}</h3>
                             <h4 className="course--name">Build a Basic Bookcase</h4>
                             <p>By Joe Smith</p>
 
@@ -49,7 +64,8 @@ const CourseDetail = () => {
                         </div>
                     </div>
                 </form>
-            </div></>
+            </div> */}
+            </>
     )
 }
 

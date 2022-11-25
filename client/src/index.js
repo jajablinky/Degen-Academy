@@ -1,18 +1,21 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "./Context";
 
 import "./styles/global.css";
-import "./styles/reset.css";
+import "./styles/new.css";
 
-import App from './App';
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Provider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
