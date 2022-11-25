@@ -19,7 +19,7 @@ const Courses = ({ context }) => {
           return (
             <NavLink
               className="course--module course--link"
-              to={`/api/courses/${course.id}`}
+              to={`/courses/${course.id}`}
               key={course.id}
             >
               <h2 className="course--label">Course</h2>

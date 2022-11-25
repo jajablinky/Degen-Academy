@@ -91,4 +91,13 @@ export default class Data {
       throw new Error();
     }
   }
+
+  async deleteCourse(id) {
+    const response = await this.api(`/courses/${id}`, "DELETE", null, true);
+    if (response.status === 204) {
+      console.log(`Successful delete of Course #${id}`);
+    } else {
+      throw new Error();
+    }
+  }
 }

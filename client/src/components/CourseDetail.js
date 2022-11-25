@@ -8,7 +8,7 @@ const CourseDetail = ({ context }) => {
 
   useEffect(() => {
     context.data
-      .getCourses()
+      .getCourse(id)
       .then((data) => setCourse(data))
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,7 +33,7 @@ const CourseDetail = ({ context }) => {
           </Link>
         </div>
       </div>
-      <div className="wrap">
+      {/* <div className="wrap">
         <h2>Course Detail</h2>
         <form>
           <div className="main--flex">
@@ -55,7 +55,7 @@ const CourseDetail = ({ context }) => {
             </div>
           </div>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -23,7 +23,7 @@ const App = () => (
       <Route exact path="/" element={<CoursesWithContext />} />
       <Route path="/courses/:id" element={<CourseDetail />} />
       <Route path="/createcourse" element={<CreateCourse />} />
-      <Route path="/course/:id/update" element={<UpdateCourse />} />
+      <Route path="/courses/:id/update" element={<UpdateCourse />} />
       <Route path="/signin" element={<UserSignIn />} />
       <Route path="/signup" element={<UserSignUp />} />
       {/* <Route path="/signout" element={<UserSignOut />} /> */}
