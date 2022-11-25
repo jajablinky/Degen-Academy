@@ -12,7 +12,7 @@ const CourseDetail = ({ context }) => {
       .getCourse(id)
       .then((data) => {
         setCourse(data);
-        setName(`${course.User.firstName}, ${course.User.lastName}`);
+        setName(`${data.User.firstName}, ${data.User.lastName}`);
     })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps

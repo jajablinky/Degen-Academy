@@ -15,11 +15,10 @@ const UpdateCourse = ({ context }) => {
       .getCourse(id)
       .then((data) => {
         setCourse(data);
-        console.log(data);
-        setTitle(course.title);
-        setDescription(course.description);
-        setEstimatedTime(course.estimatedTime);
-        setMaterialsNeeded(course.materialsNeeded);
+        setTitle(data.title);
+        setDescription(data.description);
+        setEstimatedTime(data.estimatedTime);
+        setMaterialsNeeded(data.materialsNeeded);
       })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,15 +28,18 @@ const UpdateCourse = ({ context }) => {
     const id = e.target.id;
     const value = e.target.value;
 
-    return id === "courseTitle"
-      ? setTitle(value)
-      : id === "courseDescription"
-      ? setDescription(value)
-      : id === "estimatedTime"
-      ? setEstimatedTime(value)
-      : id === "materialsNeeded"
-      ? setMaterialsNeeded(value)
-      : e;
+    if(id === "courseTitle") {
+        setTitle(value);
+    } else if (id === "courseDescription") {
+        setDescription(value);
+    } else if (id === "estimatedTime") {
+        setEstimatedTime(value);
+    } else if (id === "materialsNeeded") {
+        setMaterialsNeeded(value);
+    } else {
+        return;
+    }
+
   };
 
   const handleSubmit = (e) => {
@@ -81,19 +83,20 @@ const UpdateCourse = ({ context }) => {
               <label htmlFor="courseTitle">Course Title</label>
               <input
                 id="courseTitle"
+                name="courseTitle"
                 type="text"
                 placeholder={title}
                 value={title}
                 onChange={handleChange}
               />
 
-              <p>By </p>
+              {/* <p>By {course.User.firstName}, {course.User.lastName}</p> */}
 
               <label htmlFor="courseDescription">Course Description</label>
               <textarea
                 id="courseDescription"
                 name="courseDescription"
-                defaultValue={materialsNeeded}
+                defaultValue={description ? description : "Update with new description"}
                 onChange={handleChange}
               ></textarea>
             </div>
@@ -104,7 +107,7 @@ const UpdateCourse = ({ context }) => {
                 name="estimatedTime"
                 type="text"
                 placeholder={estimatedTime}
-                value={estimatedTime}
+                value={estimatedTime ? estimatedTime : "Update with new time"}
                 onChange={handleChange}
               />
 
@@ -117,7 +120,7 @@ const UpdateCourse = ({ context }) => {
               ></textarea>
             </div>
           </div>
-          <Link>
+          <Link to="/">
           <button className="button" type="submit">
             Update Course
           </button>
