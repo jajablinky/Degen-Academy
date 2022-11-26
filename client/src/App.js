@@ -9,29 +9,51 @@ import CreateCourse from "./components/CreateCourse";
 import UpdateCourse from "./components/UpdateCourse";
 import UserSignIn from "./components/UserSignIn";
 import UserSignUp from "./components/UserSignUp";
-import UserSignOut from "./components/UserSignOut";
+import PrivateRoute from "./PrivateRoute";
+import Forbidden from "./components/Forbidden";
+import NotFound from "./components/NotFound";
+import Error from "./components/Error";
 
 import withContext from "./Context";
 
+const HeaderWithContext = withContext(Header);
 const CoursesWithContext = withContext(Courses);
 const CourseDetailWithContext = withContext(CourseDetail);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
+const PrivateRouteWithContext = withContext(PrivateRoute)
 
 
 const App = () => (
   <>
-    <Header />
+    <HeaderWithContext />
 
     <Routes>
       <Route exact path="/" element={<CoursesWithContext />} />
       <Route path="/courses/:id" element={<CourseDetailWithContext />} />
-      <Route path="/createcourse" element={<CreateCourseWithContext />} />
-      <Route path="/courses/:id/update" element={<UpdateCourseWithContext />} />
+      <Route
+          path="courses/create"
+          element={
+            <PrivateRouteWithContext>
+              <CreateCourseWithContext />
+            </PrivateRouteWithContext>
+          }
+        />
+        <Route
+          path="courses/:id/update"
+          element={
+            <PrivateRouteWithContext>
+              <UpdateCourseWithContext />
+            </PrivateRouteWithContext>
+          }
+        />
       <Route path="/signin" element={<UserSignInWithContext />} />
       <Route path="/signup" element={<UserSignUpWithContext />} />
+      <Route path="/forbidden" element={<Forbidden />} />
+      <Route path="/error" element={<Error />} />
+        <Route path="*" element={<NotFound />} />
     </Routes>
   </>
 );

@@ -1,23 +1,36 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const UserSignIn = ({ context }) => {
-    let navigate = useNavigate();
+  const [submit, setSubmit] = useState(false);
+  let navigate = useNavigate();
 
-    const emailAddress = useRef(null);
-    const password = useRef(null);
+  const emailAddress = useRef(null);
+  const password = useRef(null);
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      await context.actions
-        .signIn(emailAddress.current.value, password.current.value)
-        .then(navigate("/"));
-    };
+  const handleSubmit =  (e) => {
+    e.preventDefault();
+    context.actions
+      .signIn(emailAddress.current.value, password.current.value)
+      .then(context.authenticatedUser ? null : setSubmit(true))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="form--centered">
-      <h1>Sign In</h1>
+      <h1>sign in</h1>
       <br></br>
+      {context.authenticatedUser ? (
+        navigate("/")
+      ) : submit ? (
+        <div className="validation--errors">
+          <h3>Please Try Again</h3>
+          <ul>'error with sign up.'</ul>
+          <br></br>
+        </div>
+      ) : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor="emailAddress">Email Address</label>
         <input
@@ -28,7 +41,14 @@ const UserSignIn = ({ context }) => {
           ref={emailAddress}
         />
         <label htmlFor="password">Password</label>
-        <input id="password" name="password" type="password" defaultValue="" ref={password} />
+        <input
+          id="password"
+          name="password"
+          type="password"
+          defaultValue=""
+          ref={password}
+        />
+
         <button className="button" type="submit">
           Sign In
         </button>
@@ -36,6 +56,7 @@ const UserSignIn = ({ context }) => {
           <button className="button button-secondary">Cancel</button>
         </Link>
       </form>
+      <br></br>
       <p>
         Don't have a user account? Click here to <Link>sign up</Link>!
       </p>

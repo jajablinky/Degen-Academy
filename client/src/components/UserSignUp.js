@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 
 const UserSignIn = ({ context }) => {
-  let navigate = useNavigate;
-
   const firstName = useRef("");
   const lastName = useRef("");
   const emailAddress = useRef("");
   const password = useRef("");
+  
+  const [errors, setErrors] = useState([]);
+  let navigate = useNavigate;
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -20,18 +21,18 @@ const UserSignIn = ({ context }) => {
 
     context.data
       .createUser(user)
-      //   .then((errors) => {
-      //     if (errors.length) {
-      //       (console.log(errors));
-      //     } else {
-      //       context.actions
-      //         .signIn(emailAddress.current.value, password.current.value)
-      //         .then(() => {
-      //           console.log("authenticaed");
-      //           navigate("/");
-      //         });
-      //     }
-      //   })
+        .then((errors) => {
+          if (errors.length) {
+            setErrors(errors);
+          } else {
+            context.actions
+              .signIn(emailAddress.current.value, password.current.value)
+              .then(() => {
+                console.log("authenticated");
+                navigate("/");
+              });
+          }
+        })
       .catch((err) => {
         console.log(err);
         navigate("/error");
@@ -42,6 +43,17 @@ const UserSignIn = ({ context }) => {
       <div className="form--centered">
         <h1>Sign Up</h1>
         <br></br>
+        {errors && errors.length ? (
+          <div className="validation--errors">
+            <h3>Validation Errors</h3>
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+            <br></br>
+          </div>
+        ) : null}
         <form onSubmit={handleSignUp}>
           <label htmlFor="firstName">First Name</label>
           <input
@@ -76,7 +88,7 @@ const UserSignIn = ({ context }) => {
             ref={password}
           />
           <Link to ="/">
-          <button className="button" type="submit">
+          <button className="button" type="submit" onClick={handleSignUp}>
             Sign Up
           </button>
           </Link>
@@ -86,7 +98,7 @@ const UserSignIn = ({ context }) => {
         </form>
         <p>
           Already have a user account? Click here to{" "}
-          <Link to="/signin">sign in</Link>!
+          <NavLink to="/signin">sign in</NavLink>!
         </p>
       </div>
     </>

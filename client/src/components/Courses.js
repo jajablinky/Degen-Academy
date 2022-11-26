@@ -17,7 +17,7 @@ const Courses = ({ context }) => {
       <div className="wrap main--grid">
         <NavLink
           className="course--module course--add--module"
-          to="/createcourse"
+          to="/courses/create"
         >
           <span className="course--add--title">
             <svg

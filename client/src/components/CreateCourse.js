@@ -1,40 +1,58 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const CreateCourse = ({ context }) => {
-  let navigate = useNavigate();
-  
-  const title = useRef('')
-  const description = useRef('')
-  const estimatedTime = useRef('')
-  const materialsNeeded = useRef('')
+  const [errors, setErrors] = useState([]);
+  const title = useRef("");
+  const description = useRef("");
+  const estimatedTime = useRef("");
+  const materialsNeeded = useRef("");
 
-  const handleSubmit =  (e) => {
-    e.preventDefault()
+  let navigate = useNavigate();
+  const authUser = context.authenticatedUser;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const course = {
-      title,
-      description,
-      estimatedTime,
-      materialsNeeded
-    }
-     context.data
-      .createCourse(course)
+      userId: context.authenticatedUser.id,
+      title: title.current.value,
+      description: description.current.value,
+      estimatedTime: estimatedTime.current.value,
+      materialsNeeded: materialsNeeded.current.value,
+    };
+
+    context.data
+      .createCourse(
+        course,
+        context.authenticatedUser.emailAddress,
+        context.authenticatedUser.password
+      )
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors);
+        } else {
+          navigate("/");
+        }
+      })
       .catch((err) => {
         console.log(err);
-        navigate('/')
+        navigate("/");
       });
-  }
+  };
 
   return (
     <div className="wrap">
-      <h1>Create Course</h1>
-      {/* <div className="validation--errors">
-        <h3>Validation Errors</h3>
-        <ul>
-          <li>Please provide a Value for "Title"</li>
-          <li>Please provide a Value for "Description"</li>
-        </ul>
-      </div> */}
+      <h1>create course</h1>
+      {errors && errors.length ? (
+        <div className="validation--errors">
+          <h3>validation errors--*/</h3>
+          <ul>
+            <li>* Please provide a Value for "Title"</li>
+            <li>* Please provide a Value for "Description"</li>
+          </ul>
+          <br></br>
+        </div>
+      ) : null}
       <form onSubmit={handleSubmit}>
         <div className="main--flex">
           <div>
@@ -47,7 +65,14 @@ const CreateCourse = ({ context }) => {
               ref={title}
             />
 
-            <p>By {}</p>
+            <p>
+              <i>
+                By{" "}
+                <u>
+                  {authUser.firstName} {authUser.lastName}
+                </u>
+              </i>
+            </p>
 
             <label htmlFor="courseDescription">Course Description</label>
             <textarea
@@ -75,10 +100,10 @@ const CreateCourse = ({ context }) => {
           </div>
         </div>
         <button className="button" type="submit">
-          Create Course
+          create course
         </button>
         <Link to="/">
-          <button className="button button-secondary">Cancel</button>
+          <button className="button button-secondary">cancel</button>
         </Link>
       </form>
     </div>

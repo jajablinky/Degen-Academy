@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, Link, NavLink, useNavigate } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 const CourseDetail = ({ context }) => {
   const [course, setCourse] = useState([]);
-  const [name, setName] = useState(null);
+  let navigate = useNavigate();
 
   const { id } = useParams();
 
@@ -12,40 +13,63 @@ const CourseDetail = ({ context }) => {
       .getCourse(id)
       .then((data) => {
         setCourse(data);
-        setName(`${data.User.firstName}, ${data.User.lastName}`);
-    })
+      })
       .catch((err) => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = (id) => {
-    context.data.deleteCourse(id);
+    context.data
+      .deleteCourse(
+        id,
+        context.authenticatedUser.emailAddress,
+        context.authenticatedUser.password
+      )
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/error");
+      });
   };
-
   return (
     <>
       <div className="actions--bar">
         <div className="wrap">
-          <Link className="button" to="update">
-            Update Course
-          </Link>
-          <NavLink className="button" to="/" key={id} onClick={handleDelete}>
-            Delete Course
-          </NavLink>
+          {context.authenticatedUser &&
+          context.authenticatedUser.id === course.userId ? (
+            <React.Fragment>
+              <Link className="button" to="update">
+                update course
+              </Link>
+              <NavLink
+                className="button"
+                to="/"
+                key={id}
+                onClick={() => handleDelete(id)}
+              >
+                delete course
+              </NavLink>
+            </React.Fragment>
+          ) : null}
+
           <Link className="button button-secondary" to="/">
-            Return to List
+            return to list
           </Link>
         </div>
       </div>
-      
+
       <div className="wrap">
         <form>
           <div className="main--flex">
             <div>
               <h1 className="course--name">{course.title}</h1>
-              <p>By {name ? name : "Unknown"}</p>
+              <p>
+                By {course.firstName} {course.lastName}
+              </p>
 
-              <p>{course.description}</p>
+              <ReactMarkdown className="reactMarkdown" children={course.description} />
             </div>
             <div>
               <h3 className="course--detail--title">Estimated Time</h3>
@@ -53,7 +77,7 @@ const CourseDetail = ({ context }) => {
 
               <h3 className="course--detail--title">Materials Needed</h3>
               <ul className="course--detail--list">
-                <li>{course.materialsNeeded}</li>
+                <ReactMarkdown children={course.materialsNeeded} />
               </ul>
             </div>
           </div>
