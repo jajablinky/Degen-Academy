@@ -5,10 +5,10 @@ const { authenticateUser } = require("./middleware/auth-user");
 const course = require("./models/course");
 const user = require("./models/user");
 
-// Construct a router instance.
+
 const router = express.Router();
 
-// Route that returns a user with authentication to check.
+/*--------------// Route that returns a user with authentication to check. */
 router.get("/users", authenticateUser, async (req, res) => {
   const user = req.currentUser;
   res.status(200).json({
@@ -19,7 +19,7 @@ router.get("/users", authenticateUser, async (req, res) => {
   });
 });
 
-// Route that returns a list of courses
+/*--------------// Route that returns a list of courses */
 router.get("/courses", async (req, res) => {
   const courses = await Course.findAll({
     attributes: [
@@ -41,7 +41,7 @@ router.get("/courses", async (req, res) => {
   res.status(200).json(courses);
 });
 
-// Route that returns a course by id
+/*--------------// Route that returns a course by id */
 router.get("/courses/:id", async (req, res) => {
   const course = await Course.findByPk(req.params.id);
   const user = await User.findByPk(course.userId);
@@ -52,16 +52,14 @@ router.get("/courses/:id", async (req, res) => {
     estimatedTime: course.estimatedTime,
     materialsNeeded: course.materialsNeeded,
     userId: course.userId,
-    User: {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      emailAddress: user.emailAddress
-    }
+    firstName: user.firstName,
+    lastName: user.lastName,
+    emailAddress: user.emailAddress
   }
   res.status(200).json(courseDisplay)
 });
 
-// Route that creates a new user.
+/*--------------// Route that creates a new user. */
 router.post("/users", async (req, res) => {
   try {
     await User.create(req.body);
@@ -82,7 +80,7 @@ router.post("/users", async (req, res) => {
   }
 });
 
-// Route that creates a new course.
+/*--------------// Route that creates a new course. */
 router.post("/courses", authenticateUser, async (req, res) => {
   try {
    const course = await Course.create(req.body);
