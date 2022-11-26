@@ -14,7 +14,10 @@ const CourseDetail = ({ context }) => {
       .then((data) => {
         setCourse(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        navigate('/error')
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

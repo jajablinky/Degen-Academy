@@ -36,7 +36,7 @@ const CreateCourse = ({ context }) => {
       })
       .catch((err) => {
         console.log(err);
-        navigate("/");
+        navigate("/error");
       });
   };
 

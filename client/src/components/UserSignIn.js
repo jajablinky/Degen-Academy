@@ -15,6 +15,7 @@ const UserSignIn = ({ context }) => {
       .then(context.authenticatedUser ? null : setSubmit(true))
       .catch((error) => {
         console.log(error);
+        navigate('/error')
       });
   };
 

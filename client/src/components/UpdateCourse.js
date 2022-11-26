@@ -23,7 +23,10 @@ const UpdateCourse = ({ context }) => {
         setEstimatedTime(data.estimatedTime);
         setMaterialsNeeded(data.materialsNeeded);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        navigate('/error');
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,5 +1,5 @@
 import apiBaseUrl from "./config";
-import {Buffer} from "buffer";
+import { Buffer } from "buffer";
 
 export default class Data {
   api(
@@ -22,14 +22,14 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
-        // Check if auth is required
+    // Check if auth is required
     if (requiresAuth) {
       const encodedCredentials = Buffer.from(
         `${credentials.username}:${credentials.password}`
       ).toString("base64");
 
-      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-     }
+      options.headers["Authorization"] = `Basic ${encodedCredentials}`;
+    }
 
     return fetch(url, options);
   }
@@ -43,17 +43,12 @@ export default class Data {
       return response.json().then((data) => data);
     } else if (response.status === 401) {
       return null;
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
     } else {
       throw new Error();
     }
   }
 
   async createUser(user) {
-
     const response = await this.api("/users", "POST", user);
     if (response.status === 201) {
       return [];
@@ -61,26 +56,16 @@ export default class Data {
       return response.json().then((data) => {
         return data.errors;
       });
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
-    }
-    else {
+    } else {
       throw new Error();
     }
   }
 
   async getCourses() {
-
     const response = await this.api(`/courses`, "GET");
     if (response.status === 200) {
       return response.json().then((data) => data);
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
-    }  else {
+    } else {
       throw new Error();
     }
   }
@@ -89,10 +74,6 @@ export default class Data {
     const response = await this.api(`/courses/${id}`, "GET");
     if (response.status === 200) {
       return response.json().then((data) => data);
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
     } else {
       throw new Error();
     }
@@ -109,10 +90,6 @@ export default class Data {
       return response.json().then((data) => {
         return data.errors;
       });
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
     } else {
       throw new Error();
     }
@@ -121,7 +98,7 @@ export default class Data {
   async updateCourse(id, body, username, password) {
     const response = await this.api(`/courses/${id}`, "PUT", body, true, {
       username,
-      password
+      password,
     });
     if (response.status === 204) {
       return [];
@@ -129,10 +106,6 @@ export default class Data {
       return response.json().then((data) => {
         return data.errors;
       });
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
     } else {
       throw new Error();
     }
@@ -141,14 +114,10 @@ export default class Data {
   async deleteCourse(id, username, password) {
     const response = await this.api(`/courses/${id}`, "DELETE", null, true, {
       username,
-      password
+      password,
     });
     if (response.status === 204) {
       console.log(`Successful deletion of Course #${id}`);
-    } else if(response.status === 500) {
-      response.json().then((data) => {
-        return data.errors;
-      })
     } else {
       throw new Error();
     }

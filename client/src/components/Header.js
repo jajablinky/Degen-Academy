@@ -10,7 +10,11 @@ const Header = ({ context }) => {
     e.preventDefault();
     await context.actions
       .signOut()
-      .then(navigate("/"));
+      .then(navigate("/"))
+      .catch((err) => {
+        console.log(err);
+        navigate('error');
+      })
   };
 
   return (

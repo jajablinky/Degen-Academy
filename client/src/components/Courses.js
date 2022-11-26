@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Courses = ({ context }) => {
   const [courses, setCourses] = useState([]);
+  let navigate = useNavigate();
 
   useEffect(() => {
     context.data
       .getCourses()
       .then((data) => setCourses(data))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        navigate('/error');
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

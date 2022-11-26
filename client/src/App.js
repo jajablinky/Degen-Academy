@@ -53,7 +53,7 @@ const App = () => (
       <Route path="/signup" element={<UserSignUpWithContext />} />
       <Route path="/forbidden" element={<Forbidden />} />
       <Route path="/error" element={<Error />} />
-        <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   </>
 );
