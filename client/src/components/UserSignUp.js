@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useRef, useState } from "react";
+import {  useNavigate, NavLink } from "react-router-dom";
 
-const UserSignIn = ({ context }) => {
-  const firstName = useRef("");
-  const lastName = useRef("");
-  const emailAddress = useRef("");
-  const password = useRef("");
-  
+const UserSignUp = ({ context }) => {
   const [errors, setErrors] = useState([]);
-  let navigate = useNavigate;
+
+  const navigate = useNavigate();
+
+  const firstName = useRef(null);
+  const lastName = useRef(null);
+  const emailAddress = useRef(null);
+  const password = useRef(null);
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -21,41 +22,42 @@ const UserSignIn = ({ context }) => {
 
     context.data
       .createUser(user)
-        .then((errors) => {
-          if (errors.length) {
-            setErrors(errors);
-          } else {
-            context.actions
-              .signIn(emailAddress.current.value, password.current.value)
-              .then(() => {
-                console.log("authenticated");
-                navigate("/");
-              });
-          }
-        })
+      .then((errors) => {
+        if (errors.length) {
+          setErrors(errors);
+        } else {
+          context.actions
+            .signIn(emailAddress.current.value, password.current.value)
+            .then(() => {
+              navigate("/");
+            });
+        }
+      })
       .catch((err) => {
         console.log(err);
         navigate("/error");
       });
   };
+  function handleCancel() {
+    navigate("/");
+  }
+
   return (
-    <>
+    <main>
       <div className="form--centered">
-        <h1>Sign Up</h1>
-        <br></br>
+        <h2>sign up</h2>
         {errors && errors.length ? (
           <div className="validation--errors">
-            <h3>Validation Errors</h3>
+            <h3>validation errors</h3>
             <ul>
               {errors.map((error, index) => (
                 <li key={index}>{error}</li>
               ))}
             </ul>
-            <br></br>
           </div>
         ) : null}
         <form onSubmit={handleSignUp}>
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">first name</label>
           <input
             id="firstName"
             name="firstName"
@@ -63,7 +65,7 @@ const UserSignIn = ({ context }) => {
             defaultValue=""
             ref={firstName}
           />
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">last name</label>
           <input
             id="lastName"
             name="lastName"
@@ -71,7 +73,7 @@ const UserSignIn = ({ context }) => {
             defaultValue=""
             ref={lastName}
           />
-          <label htmlFor="emailAddress">Email Address</label>
+          <label htmlFor="emailAddress">email address</label>
           <input
             id="emailAddress"
             name="emailAddress"
@@ -79,7 +81,7 @@ const UserSignIn = ({ context }) => {
             defaultValue=""
             ref={emailAddress}
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">password</label>
           <input
             id="password"
             name="password"
@@ -87,22 +89,20 @@ const UserSignIn = ({ context }) => {
             defaultValue=""
             ref={password}
           />
-          <Link to ="/">
-          <button className="button" type="submit" onClick={handleSignUp}>
+          <button className="button" type="submit">
             Sign Up
           </button>
-          </Link>
-          <Link to="/">
-            <button className="button button-secondary">Cancel</button>
-          </Link>
+          <button onClick={handleCancel} className="button button-secondary">
+            Cancel
+          </button>
         </form>
         <p>
-          Already have a user account? Click here to{" "}
+          already have a user account? click here to{" "}
           <NavLink to="/signin">sign in</NavLink>!
         </p>
       </div>
-    </>
+    </main>
   );
 };
 
-export default UserSignIn;
+export default UserSignUp;

@@ -3,19 +3,27 @@ import { Link, useNavigate } from "react-router-dom";
 
 const UserSignIn = ({ context }) => {
   const [submit, setSubmit] = useState(false);
+  const [error, setError] = useState(false);
   let navigate = useNavigate();
 
   const emailAddress = useRef(null);
   const password = useRef(null);
 
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     context.actions
       .signIn(emailAddress.current.value, password.current.value)
-      .then(context.authenticatedUser ? null : setSubmit(true))
+      .then((user) => {
+        if (user) {
+          setSubmit(true);
+          navigate('/')
+        } else {
+          setError(true);
+        }
+      })
       .catch((error) => {
         console.log(error);
-        navigate('/error')
+        navigate("/error");
       });
   };
 
@@ -23,15 +31,13 @@ const UserSignIn = ({ context }) => {
     <div className="form--centered">
       <h1>sign in</h1>
       <br></br>
-      {context.authenticatedUser ? (
-        navigate("/")
-      ) : submit ? (
+        {error ?
         <div className="validation--errors">
           <h3>Please Try Again</h3>
           <ul>'error with sign up.'</ul>
           <br></br>
         </div>
-      ) : null}
+       : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor="emailAddress">Email Address</label>
         <input

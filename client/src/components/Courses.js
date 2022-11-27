@@ -34,7 +34,7 @@ const Courses = ({ context }) => {
             >
               <polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 "></polygon>
             </svg>
-            New Course
+            new course
           </span>
         </NavLink>
         {courses?.map((course) => {
@@ -44,7 +44,7 @@ const Courses = ({ context }) => {
               to={`/courses/${course.id}`}
               key={course.id}
             >
-              <h2 className="course--label">Course</h2>
+              <h2 className="course--label">course</h2>
               <h3 className="course--title">{course.title}</h3>
             </NavLink>
           );
