@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "./Context";
 
 import "./styles/global.css";
-import "./styles/new.css";
+import "./styles/reset.css";
 
 
 import App from "./App";

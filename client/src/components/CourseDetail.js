@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, NavLink, useNavigate } from "react-router-dom";
+import {
+  useParams,
+  Link,
+  NavLink,
+  useNavigate
+} from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 const CourseDetail = ({ context }) => {
@@ -15,8 +20,11 @@ const CourseDetail = ({ context }) => {
         setCourse(data);
       })
       .catch((err) => {
-        console.log(err)
-        navigate('/error')
+        if (err.message === "404") {
+          navigate("/404");
+        } else {
+          navigate("error");
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,7 +80,10 @@ const CourseDetail = ({ context }) => {
                 By {course.firstName} {course.lastName}
               </p>
 
-              <ReactMarkdown className="reactMarkdown" children={course.description} />
+              <ReactMarkdown
+                className="reactMarkdown"
+                children={course.description}
+              />
             </div>
             <div>
               <h3 className="course--detail--title">Estimated Time</h3>

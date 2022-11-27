@@ -24,8 +24,11 @@ const UpdateCourse = ({ context }) => {
         setMaterialsNeeded(data.materialsNeeded);
       })
       .catch((err) => {
-        console.log(err)
-        navigate('/error');
+        if (err.message === "404") {
+          navigate("/404");
+        } else {
+          navigate("error");
+        }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

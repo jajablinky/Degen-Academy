@@ -5,7 +5,6 @@ const { authenticateUser } = require("./middleware/auth-user");
 const course = require("./models/course");
 const user = require("./models/user");
 
-
 const router = express.Router();
 
 /*--------------// Route that returns a user with authentication to check. */
@@ -28,7 +27,7 @@ router.get("/courses", async (req, res) => {
       "description",
       "estimatedTime",
       "materialsNeeded",
-      "userId"
+      "userId",
     ],
     include: [
       {
@@ -43,30 +42,37 @@ router.get("/courses", async (req, res) => {
 
 /*--------------// Route that returns a course by id */
 router.get("/courses/:id", async (req, res) => {
-  const course = await Course.findByPk(req.params.id);
-  const user = await User.findByPk(course.userId);
-  const courseDisplay = {
-    id: course.id,
-    title: course.title,
-    description: course.description,
-    estimatedTime: course.estimatedTime,
-    materialsNeeded: course.materialsNeeded,
-    userId: course.userId,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    emailAddress: user.emailAddress
+  try {
+    const course = await Course.findByPk(req.params.id);
+    if (course) {
+      const user = await User.findByPk(course.userId);
+      const courseDisplay = {
+        id: course.id,
+        title: course.title,
+        description: course.description,
+        estimatedTime: course.estimatedTime,
+        materialsNeeded: course.materialsNeeded,
+        userId: course.userId,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        emailAddress: user.emailAddress,
+      };
+      res.status(200).json(courseDisplay);
+    } else {
+      res.status(404).json({ message: "error 404" });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: `Error: ${err} while trying to find course.` });
   }
-  res.status(200).json(courseDisplay)
 });
 
 /*--------------// Route that creates a new user. */
 router.post("/users", async (req, res) => {
   try {
     await User.create(req.body);
-    res
-      .location("/")
-      .status(201)
-      .end();
+    res.location("/").status(201).end();
   } catch (error) {
     if (
       error.name === "SequelizeValidationError" ||
@@ -83,12 +89,9 @@ router.post("/users", async (req, res) => {
 /*--------------// Route that creates a new course. */
 router.post("/courses", authenticateUser, async (req, res) => {
   try {
-   const course = await Course.create(req.body);
+    const course = await Course.create(req.body);
     const { id } = course;
-    res
-      .location(`/courses/${id}`)
-      .status(201)
-      .end();
+    res.location(`/courses/${id}`).status(201).end();
   } catch (error) {
     if (
       error.name === "SequelizeValidationError" ||
