@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../images/degenacademy.png"
+
 
 const Header = ({ context }) => {
   let navigate = useNavigate();
@@ -20,7 +22,7 @@ const Header = ({ context }) => {
   return (
     <div className="header">
       <div className="bounds">
-        <Link to="/"><h1 className="header--logo">course.dev ☻</h1></Link>
+        <Link to="/"><img className="header--logo" src={logo} alt="degen academy logo"/></Link>
         <nav>
           {authUser ? (
             <>

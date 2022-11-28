@@ -31,24 +31,24 @@ a {
 
 .bounds span {
     color: #e9e5f0;
+    margin-right: 20px;
 }
 
 /* line 13, ../sass/global.sass */
 .header {
     background: #31283e;
-    padding: 40px 0;
     margin-bottom: 30px;
+    display: grid;
+    padding-inline: 200px;
   }
   /* line 17, ../sass/global.sass */
   .header--logo {
     color: #fff;
     font-size: 24px;
-    padding: 0 200px;
     margin: 0;
-    display: inline-block;
   }
-  .header--logo:hover {
-    color:rgb(198, 198, 198)
+  .header img:hover {
+    opacity: 50%;
   }
 
   /* line 23, ../sass/global.sass */
@@ -72,14 +72,14 @@ a {
   }
   /* line 34, ../sass/global.sass */
   .header nav {
+    padding: 40px;
     float: right;
-    margin-top: 3px;
-    margin-right: 200px;
+    margin-top: 27px;
   }
   /* line 37, ../sass/global.sass */
   .header nav a {
     color: rgba(255, 255, 255, 0.5);
-    padding: 10px;
+    padding-inline-end: 40px;
   }
   /* line 40, ../sass/global.sass */
   .header nav a:hover {
