@@ -13,6 +13,8 @@ import PrivateRoute from "./PrivateRoute";
 import Forbidden from "./components/Forbidden";
 import NotFound from "./components/NotFound";
 import Error from "./components/Error";
+import UserSignOut from "./components/SignOut";
+
 
 import withContext from "./Context";
 
@@ -23,6 +25,7 @@ const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
+const UserSignOutWithContext = withContext(UserSignOut);
 const PrivateRouteWithContext = withContext(PrivateRoute)
 
 
@@ -51,6 +54,7 @@ const App = () => (
         />
       <Route path="/signin" element={<UserSignInWithContext />} />
       <Route path="/signup" element={<UserSignUpWithContext />} />
+      <Route path="/signout" element={<UserSignOutWithContext />} />
       <Route path="/forbidden" element={<Forbidden />} />
       <Route path="/error" element={<Error />} />
       <Route path="/404" element={<NotFound />} />

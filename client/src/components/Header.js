@@ -1,23 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../images/degenacademy.png"
 
 
 const Header = ({ context }) => {
-  let navigate = useNavigate();
 
   const authUser = context.authenticatedUser;
-
-  const handleSignOut = async (e) => {
-    e.preventDefault();
-    await context.actions
-      .signOut()
-      .then(navigate("/"))
-      .catch((err) => {
-        console.log(err);
-        navigate('/error');
-      })
-  };
 
   return (
     <div className="header">
@@ -29,7 +17,7 @@ const Header = ({ context }) => {
               <span>
                 welcome! {authUser.firstName}, {authUser.lastName} ✔
               </span>
-              <Link to="/" onClick={handleSignOut}>sign out</Link>
+              <Link to="/signout">sign out</Link>
             </>
           ) : (
             <>

@@ -47,9 +47,10 @@ const CreateCourse = ({ context }) => {
         <div className="validation--errors">
           <h3>validation errors--*/</h3>
           <ul>
-            <li>* Please provide a Value for "Title"</li>
-            <li>* Please provide a Value for "Description"</li>
-          </ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
           <br></br>
         </div>
       ) : null}

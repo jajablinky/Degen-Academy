@@ -1,22 +1,26 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const UserSignIn = ({ context }) => {
-  const [submit, setSubmit] = useState(false);
   const [error, setError] = useState(false);
-  let navigate = useNavigate();
-
   const emailAddress = useRef(null);
   const password = useRef(null);
 
-  const handleSubmit = (e) => {
+  let navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSubmit = async (e) => {
+    console.log(location.state.from)
     e.preventDefault();
-    context.actions
+    await context.actions
       .signIn(emailAddress.current.value, password.current.value)
       .then((user) => {
         if (user) {
-          setSubmit(true);
-          navigate('/')
+          if (location.state?.from) {
+            navigate(location.state.from);
+          } else {
+            navigate("/");
+          }
         } else {
           setError(true);
         }
@@ -31,13 +35,13 @@ const UserSignIn = ({ context }) => {
     <div className="form--centered">
       <h1>sign in</h1>
       <br></br>
-        {error ?
+      {error ? (
         <div className="validation--errors">
           <h3>Please Try Again</h3>
           <ul>'error with sign up.'</ul>
           <br></br>
         </div>
-       : null}
+      ) : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor="emailAddress">Email Address</label>
         <input
