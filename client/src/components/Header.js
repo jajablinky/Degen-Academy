@@ -5,6 +5,13 @@ import logo from "../images/degenacademy.png"
 
 const Header = ({ context }) => {
 
+/**
+ *  HEADER ---/
+ * 
+ * Authorized user being accessed to display who is logged in.
+ * Different parts of nav bar will show dependent if user is signed in or not
+ */
+
   const authUser = context.authenticatedUser;
 
   return (

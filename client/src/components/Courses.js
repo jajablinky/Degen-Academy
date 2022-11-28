@@ -18,6 +18,10 @@ const Courses = ({ context }) => {
 
   return (
     <>
+    {/**
+    *   Create Course module 
+    *
+     */}
       <div className="wrap main--grid">
         <NavLink
           className="course--module course--add--module"
@@ -37,6 +41,10 @@ const Courses = ({ context }) => {
             new course
           </span>
         </NavLink>
+
+        {/**
+        * Courses mapped out and displayed on page dependent on id.
+         */}
         {courses?.map((course) => {
           return (
             <NavLink

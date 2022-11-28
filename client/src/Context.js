@@ -6,7 +6,9 @@ import Data from "./Data";
 const Context = React.createContext();
 
 export class Provider extends Component {
-  
+  /**
+   * Storing states and handling cookies
+   */
   constructor() {
     super();
     this.data = new Data();
@@ -18,6 +20,10 @@ export class Provider extends Component {
   }
 
   render() {
+    /**
+   * Storing value from helper functions, data, and authenticated user to be passed down into context to be accessed from
+   * components in apps.
+   */
     const { authenticatedUser } = this.state;
 
     const value = {
@@ -32,7 +38,13 @@ export class Provider extends Component {
       <Context.Provider value={value}>{this.props.children}</Context.Provider>
     );
   }
-
+/**
+ * ----/Sign In/----*
+ * 
+ * @param {*} username being passed into it to be referenced from database
+ * @param {*} password being passed into it to be referenced from database
+ * @returns user being returned after being authenticated that user exists and setting the cookie
+ */
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
     const plainText = password;
@@ -48,6 +60,11 @@ export class Provider extends Component {
     return user;
   };
 
+/**
+ *  * ----/Sign Out/----*
+ * Authenticated User being set back to null to trigger to a signed out state troughout app
+ * Cookie removed.
+ */
   signOut = () => {
     this.setState({ authenticatedUser: null });
     Cookies.remove("authenticatedUser");

@@ -8,11 +8,17 @@ import {
 import ReactMarkdown from "react-markdown";
 
 const CourseDetail = ({ context }) => {
+  /**
+   * State handling for course, navigation being stored and id being referenced from url.
+   */
   const [course, setCourse] = useState([]);
   let navigate = useNavigate();
 
   const { id } = useParams();
 
+  /**
+   * data being accessed from context to get course by id and setting course state and if not error handling for a 404 or 500.
+   */
   useEffect(() => {
     context.data
       .getCourse(id)
@@ -29,6 +35,10 @@ const CourseDetail = ({ context }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /**
+   *  * ----/Handle Delete/----*
+   * @param {*} id taking in id of course and making sure that authenticated user is signed in to send request to delete that specific course
+   */
   const handleDelete = (id) => {
     context.data
       .deleteCourse(
@@ -48,6 +58,10 @@ const CourseDetail = ({ context }) => {
     <>
       <div className="actions--bar">
         <div className="wrap">
+
+        {/**
+        * Authenticated user being checked alongside course user id to make sure the right user is allowed to update or delete course
+         */}
           {context.authenticatedUser &&
           context.authenticatedUser.id === course.userId ? (
             <React.Fragment>
@@ -70,7 +84,9 @@ const CourseDetail = ({ context }) => {
           </Link>
         </div>
       </div>
-
+        {/**
+        * Authenticated user being checked alongside course user id to make sure the right user is allowed to update or delete course
+         */}
       <div className="wrap">
         <form>
           <div className="main--flex">

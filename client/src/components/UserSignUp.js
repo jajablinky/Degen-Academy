@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import {  useNavigate, NavLink } from "react-router-dom";
 
 const UserSignUp = ({ context }) => {
+  /**
+   *  State and ref being stated.
+   */
   const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
@@ -11,6 +14,11 @@ const UserSignUp = ({ context }) => {
   const emailAddress = useRef(null);
   const password = useRef(null);
 
+  /**
+   * sign-up takes from input fields to store in a user object to access through context the createUser function and signin
+   * conditionals will direct user to error page OR display validation errors.
+   * @param {*} e 
+   */
   const handleSignUp = (e) => {
     e.preventDefault();
     const user = {

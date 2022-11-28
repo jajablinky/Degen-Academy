@@ -29,6 +29,12 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const PrivateRouteWithContext = withContext(PrivateRoute)
 
 
+
+/**
+ * Every route being run through a context class component to pass down the properties that will be needed.
+ * authenticated users can access each private route.
+ * 
+ */
 const App = () => (
   <>
     <HeaderWithContext />

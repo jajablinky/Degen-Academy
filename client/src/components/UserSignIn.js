@@ -9,8 +9,14 @@ const UserSignIn = ({ context }) => {
   let navigate = useNavigate();
   const location = useLocation();
 
+  /**
+   * HandleSubmit
+   * @param {*} e  - Signs in adding reference of email address and password current value to authenticate if that user exists.
+   * If user exists it will either navigate you to the create course or back to home page depending on how you got to sign-in page
+   * If user is unable to authenticate, it sets an error state to let you know to re-try again.
+   */
+
   const handleSubmit = async (e) => {
-    console.log(location.state.from)
     e.preventDefault();
     await context.actions
       .signIn(emailAddress.current.value, password.current.value)

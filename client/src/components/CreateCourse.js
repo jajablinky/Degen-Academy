@@ -2,15 +2,27 @@ import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const CreateCourse = ({ context }) => {
+  /**
+   * State Handling + Ref
+   */
   const [errors, setErrors] = useState([]);
   const title = useRef("");
   const description = useRef("");
   const estimatedTime = useRef("");
   const materialsNeeded = useRef("");
 
+  // Navigation being stored @navigate, and authenticated user being pulled from context to be stored in @authUser
   let navigate = useNavigate();
   const authUser = context.authenticatedUser;
 
+  /**
+   * ------Handle Submit -----/
+   * 
+   * @param {*} e Creating course based on authenticated User id.
+   * Passing course object to create course.
+   * Error handling to account for course existing or an interal 500 error
+   *
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const course = {
@@ -41,19 +53,28 @@ const CreateCourse = ({ context }) => {
   };
 
   return (
+    /**
+     * Mapping out errors dependent on validation errors from Sequelize.
+     * If not validation errors will not display
+     */
     <div className="wrap">
       <h1>create course</h1>
       {errors && errors.length ? (
         <div className="validation--errors">
           <h3>validation errors--*/</h3>
           <ul>
-              {errors.map((error, index) => (
-                <li key={index}>{error}</li>
-              ))}
-            </ul>
+            {errors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
           <br></br>
         </div>
       ) : null}
+      {/*
+       *  Course inputs being referenced into useRef().
+       * first name and last name being accessed depending on who is signed in
+       *
+       */}
       <form onSubmit={handleSubmit}>
         <div className="main--flex">
           <div>
@@ -100,6 +121,11 @@ const CreateCourse = ({ context }) => {
             ></textarea>
           </div>
         </div>
+
+        {/*
+         * Create course button and cancel redirecting you back to home page.
+         */}
+
         <button className="button" type="submit">
           create course
         </button>
