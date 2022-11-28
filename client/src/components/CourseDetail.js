@@ -77,9 +77,9 @@ const CourseDetail = ({ context }) => {
             <div>
               <h1 className="course--name">{course.title}</h1>
               <p>
-                By {course.firstName} {course.lastName}
+                By <i>{course.firstName} {course.lastName}</i>
               </p>
-
+<br></br>
               <ReactMarkdown
                 className="reactMarkdown"
                 children={course.description}
