@@ -67,10 +67,10 @@ const UserSignIn = ({ context }) => {
         />
 
         <button className="button" type="submit">
-          Sign In
+          sign in
         </button>
         <Link to="/">
-          <button className="button button-secondary">Cancel</button>
+          <button className="button button-secondary">cancel</button>
         </Link>
       </form>
       <br></br>

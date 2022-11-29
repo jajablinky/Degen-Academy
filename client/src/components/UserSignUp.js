@@ -98,10 +98,10 @@ const UserSignUp = ({ context }) => {
             ref={password}
           />
           <button className="button" type="submit">
-            Sign Up
+            sign up
           </button>
           <button onClick={handleCancel} className="button button-secondary">
-            Cancel
+            cancel
           </button>
         </form>
         <p>
