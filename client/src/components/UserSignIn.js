@@ -43,13 +43,13 @@ const UserSignIn = ({ context }) => {
       <br></br>
       {error ? (
         <div className="validation--errors">
-          <h3>Please Try Again</h3>
-          <ul>'error with sign up.'</ul>
+          <h3>please try again</h3>
+          <ul>'error with sign in.'</ul>
           <br></br>
         </div>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="emailAddress">Email Address</label>
+        <label htmlFor="emailAddress">email Address</label>
         <input
           id="emailAddress"
           name="emailAddress"
@@ -57,7 +57,7 @@ const UserSignIn = ({ context }) => {
           defaultValue=""
           ref={emailAddress}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">password</label>
         <input
           id="password"
           name="password"
