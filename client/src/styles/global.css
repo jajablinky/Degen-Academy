@@ -36,17 +36,22 @@ a {
 
 /* line 13, ../sass/global.sass */
 .header {
-  background: #31283e;
-  margin-bottom: 30px;
-  display: grid;
-  padding-inline: 200px;
+  background: transparent;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 /* line 17, ../sass/global.sass */
 .header--logo {
-  color: #fff;
-  font-size: 24px;
   margin: 0;
 }
+
+.header img {
+  height: 50px;
+  width: 200px;
+  object-fit: cover;
+}
+
 .header img:hover {
   opacity: 50%;
 }
@@ -72,19 +77,39 @@ a {
 }
 /* line 34, ../sass/global.sass */
 .header nav {
-  padding: 40px;
   float: right;
-  margin-top: 27px;
+  justify-content: center;
 }
-/* line 37, ../sass/global.sass */
-.header nav a {
-  color: rgba(255, 255, 255, 0.5);
-  padding-inline-end: 40px;
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 0 10px;
+  width: 200px;
+  padding: 10px 0;
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+  transition: 0.4s;
 }
-/* line 40, ../sass/global.sass */
-.header nav a:hover {
-  color: #fff;
+
+.signup {
+  color: white;
+  background-color: rgba(104, 85, 224, 1);
 }
+
+.signin {
+  color: rgb(104, 85, 224);
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(104, 85, 224, 1);
+}
+
+button:hover {
+  color: white;
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+  background-color: rgba(104, 85, 224, 1);
+}
+
 .course--module {
   background: #7c689b;
   border-radius: 0.5rem;
@@ -238,7 +263,7 @@ textarea:focus {
   outline: 2px solid #332a40;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 685px) {
   .header--signedin li {
     display: inline-block;
     margin-left: 0.5rem;
@@ -275,5 +300,5 @@ textarea:focus {
 }
 
 .reactmarkdown {
-    padding: 40px;
+  padding: 40px;
 }
