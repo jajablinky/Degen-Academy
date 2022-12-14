@@ -307,6 +307,19 @@ textarea:focus {
   outline: 2px solid #332a40;
 }
 
+@media (max-width: 473px) {
+  .header button {
+    width: 30px;
+    margin: 2px;
+  }
+}
+
+@media (max-width: 522px) {
+  .header button {
+    width: 100px;
+  }
+}
+
 @media screen and (min-width: 685px) {
   .header--signedin li {
     display: inline-block;
