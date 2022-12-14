@@ -89,22 +89,17 @@ const CourseDetail = ({ context }) => {
           {context.authenticatedUser &&
           context.authenticatedUser.id === course.userId ? (
             <React.Fragment>
-              <Link className="button" to="update">
-                Update Course
+              <Link to="update">
+                <button className="button">Update Course</button>
               </Link>
-              <NavLink
-                className="button"
-                to="/"
-                key={id}
-                onClick={() => handleDelete(id)}
-              >
-                Delete Course
+              <NavLink to="/" key={id} onClick={() => handleDelete(id)}>
+                <button className="button">Delete Course</button>
               </NavLink>
             </React.Fragment>
           ) : null}
 
-          <Link className="button button-secondary" to="/">
-            Return To List
+          <Link to="/">
+            <button className="button button-secondary">Return To List</button>
           </Link>
         </div>
       </div>

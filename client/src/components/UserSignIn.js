@@ -40,7 +40,6 @@ const UserSignIn = ({ context }) => {
   return (
     <div className="form--centered">
       <h1>Sign In</h1>
-      <br></br>
       {error ? (
         <div className="validation--errors">
           <h3>Please Try Again</h3>

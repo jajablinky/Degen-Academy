@@ -17,7 +17,7 @@ const CreateCourse = ({ context }) => {
 
   /**
    * ------Handle Submit -----/
-   * 
+   *
    * @param {*} e Creating course based on authenticated User id.
    * Passing course object to create course.
    * Error handling to account for course existing or an interal 500 error
@@ -58,7 +58,7 @@ const CreateCourse = ({ context }) => {
      * If not validation errors will not display
      */
     <div className="wrap">
-      <h1>create course</h1>
+      <h1>Create Course</h1>
       {errors && errors.length ? (
         <div className="validation--errors">
           <h3>validation errors--*/</h3>
@@ -127,10 +127,10 @@ const CreateCourse = ({ context }) => {
          */}
 
         <button className="button" type="submit">
-          create course
+          Create course
         </button>
         <Link to="/">
-          <button className="button button-secondary">cancel</button>
+          <button className="button button-secondary">Cancel</button>
         </Link>
       </form>
     </div>
