@@ -97,10 +97,10 @@ const UserSignUp = ({ context }) => {
             defaultValue=""
             ref={password}
           />
-          <button className="log" type="submit">
+          <button className="button" type="submit">
             Sign Up
           </button>
-          <button onClick={handleCancel} className="reg">
+          <button onClick={handleCancel} className="button button-secondary">
             Cancel
           </button>
         </form>

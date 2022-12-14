@@ -122,6 +122,17 @@ button {
   background-color: rgba(104, 85, 224, 1);
 }
 
+.secondsignup {
+  color: #332a40;
+  border: 2px solid rgba(104, 85, 224, 1);
+  border-radius: 15px;
+}
+
+.cancel {
+  border-radius: 15px;
+  border: 2px solid rgba(104, 85, 224, 1);
+}
+
 .signin {
   color: rgb(104, 85, 224);
   background-color: rgba(255, 255, 255, 1);
@@ -135,32 +146,42 @@ button:hover {
 }
 
 .course--module {
-  border: 2px solid #7c689b;
+  border: 2px solid #7ca5c4;
   border-radius: 0.5rem;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   display: block;
+  transition: margin-left 1s, background 1s, box-shadow 1s;
 }
 
 .course--module:hover {
-  background: #b2a6c3;
-  margin-left: 4px;
+  background: #7ca5c4;
+  margin-left: 10px;
+  box-shadow: 0 0 10px rgba(104, 85, 224, 0.6);
+}
+
+.course--module:hover .course--label,
+.course--module:hover .course--title,
+.course--module:hover .course--add--title {
+  color: whitesmoke;
 }
 
 .course--label {
-  color: #57496e;
+  color: #212121;
   font-size: 0.9rem;
   font-weight: 400;
   margin-bottom: 0.25rem;
+  transition: color 250ms;
 }
 .course--title {
-  color: #63537d;
+  color: #2c2c2c;
   font-weight: 700;
   font-size: 1.25rem;
+  transition: color 250ms;
 }
 .course--add--module {
-  background: #ddd9e4;
-  color: #57496e;
+  background: #e7ecef;
+  color: #212121;
   font-weight: 300;
   font-size: 1.25rem;
 }
@@ -244,7 +265,7 @@ textarea {
   min-height: 300px;
 }
 .button {
-  background: #7c689b;
+  background: #7ca5c4;
   color: #fff;
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
@@ -255,27 +276,24 @@ textarea {
   text-align: center;
   border-radius: 0.5rem;
   font-weight: bold;
-  transition: background 0.2s;
+  transition: opacity 1s, color 1s;
 }
 .button:last-child {
   margin-bottom: 0;
 }
-.button:not(.button-secondary):hover {
-  background: #63537d;
+.button:hover {
   cursor: pointer;
+  background-color: #7ca5c4;
+  opacity: 90%;
 }
+
 .button-secondary {
-  color: #7c689b;
+  color: #7ca5c4;
   background: none;
-  box-shadow: 0 0 0 2px #7c689b inset;
-  transition: box-shadow 0.2s, color 0.2s;
+  box-shadow: 0 0 0 2px #7ca5c4 inset;
+  transition: box-shadow 1s, color 1s;
 }
-.button-secondary:hover {
-  color: #63537d;
-  box-shadow: 0 0 0 2px #63537d inset;
-  cursor: pointer;
-}
-input:focus,
+#7ca5c4 input:focus,
 button:focus,
 .button:focus,
 textarea:focus {
