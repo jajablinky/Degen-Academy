@@ -13,32 +13,45 @@ const Header = ({ context }) => {
   const authUser = context.authenticatedUser;
 
   return (
-    <div className="header">
-      <div className="bounds">
-        <Link to="/">
-          <img className="header--logo" src={logo} alt="degen academy logo" />
-        </Link>
-        <nav>
-          {authUser ? (
-            <>
-              <span>
-                Welcome! {authUser.firstName}, {authUser.lastName} ✔
-              </span>
-              <Link to="/signout">Sign out</Link>
-            </>
-          ) : (
-            <>
-              <Link to="/signup">
-                <button className="signup">Sign Up</button>
-              </Link>
-              <Link to="/signin">
-                <button className="signin">Sign In</button>
-              </Link>
-            </>
-          )}
-        </nav>
+    <>
+      <div className="miniNav">
+        This site is a demo made by Geoffrey Millar
+        <a
+          href="https://www.geoffreymillar.com"
+          title="Geoffrey Millar"
+          target="_blank"
+          rel="noreferrer"
+        >
+          http://www.geoffreymillar.com
+        </a>
       </div>
-    </div>
+      <div className="header">
+        <div className="bounds">
+          <Link to="/">
+            <img className="header--logo" src={logo} alt="degen academy logo" />
+          </Link>
+          <nav>
+            {authUser ? (
+              <>
+                <span>
+                  Welcome!{authUser.firstName}, {authUser.lastName} ✔
+                </span>
+                <Link to="/signout">Sign out</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/signup">
+                  <button className="signup">Sign Up</button>
+                </Link>
+                <Link to="/signin">
+                  <button className="signin">Sign In</button>
+                </Link>
+              </>
+            )}
+          </nav>
+        </div>
+      </div>
+    </>
   );
 };
 

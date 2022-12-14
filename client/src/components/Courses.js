@@ -11,17 +11,17 @@ const Courses = ({ context }) => {
       .then((data) => setCourses(data))
       .catch((err) => {
         console.log(err);
-        navigate('/error');
+        navigate("/error");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-    {/**
-    *   Create Course module 
-    *
-     */}
+      {/**
+       *   Create Course module
+       *
+       */}
       <div className="wrap main--grid">
         <NavLink
           className="course--module course--add--module"
@@ -38,12 +38,12 @@ const Courses = ({ context }) => {
             >
               <polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 "></polygon>
             </svg>
-            new course
+            New Course
           </span>
         </NavLink>
 
         {/**
-        * Courses mapped out and displayed on page dependent on id.
+         * Courses mapped out and displayed on page dependent on id.
          */}
         {courses?.map((course) => {
           return (
@@ -52,7 +52,7 @@ const Courses = ({ context }) => {
               to={`/courses/${course.id}`}
               key={course.id}
             >
-              <h2 className="course--label">course</h2>
+              <h2 className="course--label">Course</h2>
               <h3 className="course--title">{course.title}</h3>
             </NavLink>
           );

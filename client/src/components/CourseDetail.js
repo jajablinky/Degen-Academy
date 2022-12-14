@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  useParams,
-  Link,
-  NavLink,
-  useNavigate
-} from "react-router-dom";
+import { useParams, Link, NavLink, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 const CourseDetail = ({ context }) => {
@@ -56,46 +51,18 @@ const CourseDetail = ({ context }) => {
   };
   return (
     <>
-      <div className="actions--bar">
-        <div className="wrap">
-
-        {/**
-        * Authenticated user being checked alongside course user id to make sure the right user is allowed to update or delete course
-         */}
-          {context.authenticatedUser &&
-          context.authenticatedUser.id === course.userId ? (
-            <React.Fragment>
-              <Link className="button" to="update">
-                update course
-              </Link>
-              <NavLink
-                className="button"
-                to="/"
-                key={id}
-                onClick={() => handleDelete(id)}
-              >
-                delete course
-              </NavLink>
-            </React.Fragment>
-          ) : null}
-
-          <Link className="button button-secondary" to="/">
-            return to list
-          </Link>
-        </div>
-      </div>
-        {/**
-        * Authenticated user being checked alongside course user id to make sure the right user is allowed to update or delete course
-         */}
       <div className="wrap">
         <form>
           <div className="main--flex">
             <div>
               <h1 className="course--name">{course.title}</h1>
               <p>
-                By <i>{course.firstName} {course.lastName}</i>
+                By{" "}
+                <i>
+                  {course.firstName} {course.lastName}
+                </i>
               </p>
-<br></br>
+              <br></br>
               <ReactMarkdown
                 className="reactMarkdown"
                 children={course.description}
@@ -112,6 +79,34 @@ const CourseDetail = ({ context }) => {
             </div>
           </div>
         </form>
+      </div>
+
+      <div className="actions--bar">
+        <div className="wrap">
+          {/**
+           * Authenticated user being checked alongside course user id to make sure the right user is allowed to update or delete course
+           */}
+          {context.authenticatedUser &&
+          context.authenticatedUser.id === course.userId ? (
+            <React.Fragment>
+              <Link className="button" to="update">
+                Update Course
+              </Link>
+              <NavLink
+                className="button"
+                to="/"
+                key={id}
+                onClick={() => handleDelete(id)}
+              >
+                Delete Course
+              </NavLink>
+            </React.Fragment>
+          ) : null}
+
+          <Link className="button button-secondary" to="/">
+            Return To List
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -39,17 +39,17 @@ const UserSignIn = ({ context }) => {
 
   return (
     <div className="form--centered">
-      <h1>sign in</h1>
+      <h1>Sign In</h1>
       <br></br>
       {error ? (
         <div className="validation--errors">
-          <h3>please try again</h3>
-          <ul>'error with sign in.'</ul>
+          <h3>Please Try Again</h3>
+          <ul>'Error with Sign In.'</ul>
           <br></br>
         </div>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="emailAddress">email Address</label>
+        <label htmlFor="emailAddress">Email Address</label>
         <input
           id="emailAddress"
           name="emailAddress"
@@ -57,7 +57,7 @@ const UserSignIn = ({ context }) => {
           defaultValue=""
           ref={emailAddress}
         />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           name="password"
@@ -67,15 +67,16 @@ const UserSignIn = ({ context }) => {
         />
 
         <button className="button" type="submit">
-          sign in
+          Sign in
         </button>
         <Link to="/">
-          <button className="button button-secondary">cancel</button>
+          <button className="button button-secondary">Cancel</button>
         </Link>
       </form>
       <br></br>
       <p>
-        Don't have a user account? Click here to <Link>sign up</Link>!
+        Don't have a user account? Click here to{" "}
+        <Link to="/signup">Sign up</Link>!
       </p>
     </div>
   );
