@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import cryptoGraphic from "../images/crypto-graphic.png";
 
 const Courses = ({ context }) => {
   const [courses, setCourses] = useState([]);
@@ -22,26 +23,34 @@ const Courses = ({ context }) => {
        *   Create Course module
        *
        */}
+      <div className="wrap landing--module--container">
+        <div className="landing--module">
+          {/* LEFT SIDE */}
+          <div className="landing--module--content--left">
+            <div className="landing--module--content--left--slogan">
+              <h1>Web3 courses taught and maintained by fellow degens</h1>
+            </div>
+            <div className="landing--module--content--left--description">
+              <p>
+                Lets face it we need something better than empty Twitter threads
+                and drawn-out substacks. Here let's make some quality courses
+                with full short-form curriculums.
+              </p>
+            </div>
+            <div className="landing--module--content--left--newcourse">
+              <NavLink to="/courses/create">
+                <button className="button">Create Course</button>
+              </NavLink>
+            </div>
+            <div className="landing--module--content--left--logos"></div>
+          </div>
+          {/* RIGHT SIDE */}
+          <div className="landing--module--content--right">
+            <img src={cryptoGraphic} alt="cryptoGraphic" />
+          </div>
+        </div>
+      </div>
       <div className="wrap main--grid">
-        <NavLink
-          className="course--module course--add--module"
-          to="/courses/create"
-        >
-          <span className="course--add--title">
-            <svg
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              viewBox="0 0 13 13"
-              className="add"
-            >
-              <polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 "></polygon>
-            </svg>
-            New Course
-          </span>
-        </NavLink>
-
         {/**
          * Courses mapped out and displayed on page dependent on id.
          */}
