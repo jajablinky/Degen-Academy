@@ -87,10 +87,10 @@ const UpdateCourse = ({ context }) => {
         navigate("/forbidden")
       ) : (
         <div className="wrap">
-          <h1>update course</h1>
+          <h1>Update Course</h1>
           {errors && errors.length ? (
             <div className="validation--errors">
-              <h3>validation errors</h3>
+              <h3>Validation Errors</h3>
               <ul>
                 {errors.map((error, index) => (
                   <li key={index}>{error}</li>
@@ -102,7 +102,7 @@ const UpdateCourse = ({ context }) => {
           <form onSubmit={handleSubmit}>
             <div className="main--flex">
               <div>
-                <label htmlFor="courseTitle">course title</label>
+                <label htmlFor="courseTitle">Course Title</label>
                 <input
                   id="courseTitle"
                   name="courseTitle"
@@ -116,7 +116,7 @@ const UpdateCourse = ({ context }) => {
                   By {course.firstName}, {course.lastName}
                 </p>
 
-                <label htmlFor="courseDescription">course description</label>
+                <label htmlFor="courseDescription">Course Description</label>
                 <textarea
                   id="courseDescription"
                   name="courseDescription"
@@ -125,7 +125,7 @@ const UpdateCourse = ({ context }) => {
                 ></textarea>
               </div>
               <div>
-                <label htmlFor="estimatedTime">estimated time</label>
+                <label htmlFor="estimatedTime">Estimated Time</label>
                 <input
                   id="estimatedTime"
                   name="estimatedTime"
@@ -135,7 +135,7 @@ const UpdateCourse = ({ context }) => {
                   onChange={handleChange}
                 />
 
-                <label htmlFor="materialsNeeded">materials needed</label>
+                <label htmlFor="materialsNeeded">Materials Needed</label>
                 <textarea
                   id="materialsNeeded"
                   name="materialsNeeded"
@@ -146,11 +146,11 @@ const UpdateCourse = ({ context }) => {
             </div>
             <Link to="/">
               <button className="button" type="submit" onClick={handleSubmit}>
-                update course
+                Update Course
               </button>
             </Link>
             <Link to="/">
-              <button className="button button-secondary">cancel</button>
+              <button className="button button-secondary">Cancel</button>
             </Link>
           </form>
         </div>

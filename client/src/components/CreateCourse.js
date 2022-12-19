@@ -6,6 +6,7 @@ const CreateCourse = ({ context }) => {
    * State Handling + Ref
    */
   const [errors, setErrors] = useState([]);
+  const [tab, setTab] = useState("Overview");
   const title = useRef("");
   const description = useRef("");
   const estimatedTime = useRef("");
@@ -53,87 +54,90 @@ const CreateCourse = ({ context }) => {
   };
 
   return (
-    /**
-     * Mapping out errors dependent on validation errors from Sequelize.
-     * If not validation errors will not display
-     */
-    <div className="wrap">
-      <h1>Create Course</h1>
-      {errors && errors.length ? (
-        <div className="validation--errors">
-          <h3>validation errors--*/</h3>
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-          <br></br>
-        </div>
-      ) : null}
-      {/*
-       *  Course inputs being referenced into useRef().
-       * first name and last name being accessed depending on who is signed in
-       *
-       */}
-      <form onSubmit={handleSubmit}>
-        <div className="main--flex">
-          <div>
-            <label htmlFor="courseTitle">Course Title</label>
-            <input
-              id="courseTitle"
-              name="courseTitle"
-              type="text"
-              defaultValue=""
-              ref={title}
-            />
-
-            <p>
-              <i>
-                By{" "}
-                <u>
-                  {authUser.firstName} {authUser.lastName}
-                </u>
-              </i>
-            </p>
-
-            <label htmlFor="courseDescription">Course Description</label>
-            <textarea
-              id="courseDescription"
-              name="courseDescription"
-              ref={description}
-            ></textarea>
-          </div>
-          <div>
-            <label htmlFor="estimatedTime">Estimated Time</label>
-            <input
-              id="estimatedTime"
-              name="estimatedTime"
-              type="text"
-              defaultValue=""
-              ref={estimatedTime}
-            />
-
-            <label htmlFor="materialsNeeded">Materials Needed</label>
-            <textarea
-              id="materialsNeeded"
-              name="materialsNeeded"
-              ref={materialsNeeded}
-            ></textarea>
-          </div>
-        </div>
-
-        {/*
-         * Create course button and cancel redirecting you back to home page.
+    <main>
+      <div className="wrap">
+        <h1>Create Course</h1>
+        <div className="course--nav"></div>
+        {/**
+         * Mapping out errors dependent on validation errors from Sequelize.
+         * If not validation errors will not display
          */}
+        {errors && errors.length ? (
+          <div className="validation--errors">
+            <h3>Validation Errors</h3>
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+            <br></br>
+          </div>
+        ) : null}
+        {/*
+         *  Course inputs being referenced into useRef().
+         * first name and last name being accessed depending on who is signed in
+         *
+         */}
+        <form onSubmit={handleSubmit}>
+          <div className="main--flex">
+            <div>
+              <label htmlFor="courseTitle">Course Title</label>
+              <input
+                id="courseTitle"
+                name="courseTitle"
+                type="text"
+                defaultValue=""
+                ref={title}
+              />
 
-        <button className="button" type="submit">
-          Create course
-        </button>
-        <Link to="/">
-          <button className="button button-secondary">Cancel</button>
-        </Link>
-      </form>
-    </div>
+              <p>
+                <i>
+                  By{" "}
+                  <u>
+                    {authUser.firstName} {authUser.lastName}
+                  </u>
+                </i>
+              </p>
+
+              <label htmlFor="courseDescription">Course Description</label>
+              <textarea
+                id="courseDescription"
+                name="courseDescription"
+                ref={description}
+              ></textarea>
+            </div>
+            <div>
+              <label htmlFor="estimatedTime">Estimated Time</label>
+              <input
+                id="estimatedTime"
+                name="estimatedTime"
+                type="text"
+                defaultValue=""
+                ref={estimatedTime}
+              />
+
+              <label htmlFor="materialsNeeded">Materials Needed</label>
+              <textarea
+                id="materialsNeeded"
+                name="materialsNeeded"
+                ref={materialsNeeded}
+              ></textarea>
+            </div>
+          </div>
+
+          {/*
+           * Create course button and cancel redirecting you back to home page.
+           */}
+
+          <button className="button" type="submit">
+            Create course
+          </button>
+          <Link to="/">
+            <button className="button button-secondary">Cancel</button>
+          </Link>
+        </form>
+      </div>
+    </main>
   );
 };
 

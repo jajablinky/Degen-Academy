@@ -18,7 +18,7 @@ const Courses = ({ context }) => {
   }, []);
 
   return (
-    <>
+    <main>
       {/**
        *   Create Course module
        *
@@ -67,7 +67,7 @@ const Courses = ({ context }) => {
           );
         })}
       </div>
-    </>
+    </main>
   );
 };
 

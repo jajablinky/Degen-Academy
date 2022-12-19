@@ -1,3 +1,0 @@
-Need update request to go through
-
-Set up authorization sign in.

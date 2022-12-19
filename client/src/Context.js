@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 import Data from "./Data";
 
@@ -12,18 +12,18 @@ export class Provider extends Component {
   constructor() {
     super();
     this.data = new Data();
-    this.cookie = Cookies.get('authenticatedUser');
+    this.cookie = Cookies.get("authenticatedUser");
 
     this.state = {
-      authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
+      authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null,
     };
   }
 
   render() {
     /**
-   * Storing value from helper functions, data, and authenticated user to be passed down into context to be accessed from
-   * components in apps.
-   */
+     * Storing value from helper functions, data, and authenticated user to be passed down into context to be accessed from
+     * components in apps.
+     */
     const { authenticatedUser } = this.state;
 
     const value = {
@@ -38,13 +38,13 @@ export class Provider extends Component {
       <Context.Provider value={value}>{this.props.children}</Context.Provider>
     );
   }
-/**
- * ----/Sign In/----*
- * 
- * @param {*} username being passed into it to be referenced from database
- * @param {*} password being passed into it to be referenced from database
- * @returns user being returned after being authenticated that user exists and setting the cookie
- */
+  /**
+   * ----/Sign In/----*
+   *
+   * @param {*} username being passed into it to be referenced from database
+   * @param {*} password being passed into it to be referenced from database
+   * @returns user being returned after being authenticated that user exists and setting the cookie
+   */
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
     const plainText = password;
@@ -55,16 +55,16 @@ export class Provider extends Component {
           authenticatedUser: user,
         };
       });
-      Cookies.set('authenticatedUser', JSON.stringify(user), {expires: 1});
+      Cookies.set("authenticatedUser", JSON.stringify(user));
     }
     return user;
   };
 
-/**
- *  * ----/Sign Out/----*
- * Authenticated User being set back to null to trigger to a signed out state troughout app
- * Cookie removed.
- */
+  /**
+   *  * ----/Sign Out/----*
+   * Authenticated User being set back to null to trigger to a signed out state troughout app
+   * Cookie removed.
+   */
   signOut = () => {
     this.setState({ authenticatedUser: null });
     Cookies.remove("authenticatedUser");
