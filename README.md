@@ -6,7 +6,8 @@
 - Authorization and authentication: Using sign-ups and sign-ins requesting access to database, responsively displayed  to user to manage the correct courses
 - Rest API constructed with courses and users
 - React framework with stateful/stateless components
-- Sequelize.js and Express Node.js utilised to handle requests and responses 
+- Sequelize.js and Express Node.js utilised to handle requests and responses
+- Custom CSS designed, no UI libraries
 
 <b>To Run</b>:
 - npm start client
