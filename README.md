@@ -8,6 +8,6 @@
 - React framework with stateful/stateless components
 - Sequelize.js and Express Node.js utilised to handle requests and responses 
 
-<b>To Run:</b>
-npm start client
-localhost:3000
+<b>To Run</b>:
+- npm start client
+- localhost:3000
